@@ -1,19 +1,6 @@
-# app
+<!-- 登录业务 -->
+1.在登录页面输入用户名密码
+2.调用后台接口进行验证
+3.通过验证之后,根据后台的响应状态跳转到项目主页
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+通过Token维持登录状态
