@@ -4,6 +4,8 @@ import Login from "@/views/login"
 import Home from '@/views/home'
 import Welcome from '@/views/home/welcome'
 import Users from "@/views/user/users"
+import Rights from "@/views/rights"
+import Roles from  '@/views/rights/roles'
 
 
 Vue.use(VueRouter)
@@ -32,8 +34,18 @@ const routes = [
       },
       {
         path: "/users",
-        name:'users',
+        name: 'users',
         component: Users
+      },
+      {
+        path: '/rights',
+        name: "rights",
+        component: Rights,
+      },
+      {
+        path: '/roles',
+        name: "roles",
+        component: Roles,
       }
 
     ]
@@ -52,13 +64,13 @@ router.beforeEach((to, from, next) => {
     const token = sessionStorage.getItem("token")
     // 有Token放行,否则去登录页
     if (token) next()
-    else { 
+    else {
       next('/login')
     }
   } else {
     next()
   }
-  
+
 
 })
 

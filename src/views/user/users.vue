@@ -76,6 +76,7 @@
               type="warning"
               icon="el-icon-setting"
               size="mini"
+              @click="getRoles(row)"
             ></el-button>
           </template>
         </el-table-column>
@@ -149,6 +150,45 @@
           <el-button type="primary" @click="putUserInfo">确 定</el-button>
         </span>
       </el-dialog>
+
+      <!-- 分配角色弹框 -->
+      <el-dialog
+        title="分配角色"
+        :visible.sync="roleDialogVisible"
+        width="50%"
+        :before-close="handleClose"
+      >
+        <!--弹框分配角色的表单 -->
+        <div>
+          <p>
+            当前的用户是:<span> {{ userInfo.username }}</span>
+          </p>
+          <p>
+            当前的角色是:<span> {{ userInfo.role_name }}</span>
+          </p>
+          <p>
+            分配角色:<span>
+              <el-select v-model="selectRoleId" placeholder="请选择">
+                <el-option
+                  v-for="item in roleInfo"
+                  :key="item.id"
+                  :label="item.roleName"
+                  :value="item.id"
+                >
+                </el-option> </el-select
+            ></span>
+          </p>
+        </div>
+        <!-- 弹框下方的按钮 -->
+        <!-- 弹框取消按钮 -->
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="roleDialogVisible = false">取 消</el-button>
+          <!-- 弹框确认按钮 -->
+          <el-button type="primary" @click="putUserRole(userInfo.id)"
+            >确 定</el-button
+          >
+        </span>
+      </el-dialog>
     </el-card>
   </div>
 </template>
@@ -171,6 +211,8 @@ export default {
       dialogVisible: false,
       // 控制修改用户弹框显示和隐藏的数据
       editDialogVisible: false,
+      // 控制分配角色的弹框显示和隐藏的数据
+      roleDialogVisible: false,
       // 添加用户表单的值
       addForm: {
         username: "",
@@ -184,6 +226,11 @@ export default {
         email: "",
         mobile: "",
       },
+      // 当前用户的列表信息
+      userInfo: {},
+      // 角色的列表信息
+      roleInfo: [],
+      selectRoleId: "",
     };
   },
   created() {
@@ -241,6 +288,8 @@ export default {
     // 编辑用户按钮的回调  发送请求 根据id查用户
     async putUser(id) {
       this.editDialogVisible = true;
+      // console.log(id);
+      // this.editFrom = id
       let { data } = await this.$api.getUserById(id);
       if (data.meta.status === 200) {
         // 获取数据成功
@@ -256,6 +305,34 @@ export default {
         this.getUserList(this.queryInfo);
       } else {
         this.$message.error("更新状态失败!");
+      }
+    },
+    // 分配角色的按钮   //获取角色列表
+    async getRoles(row) {
+      this.userInfo = row;
+      this.roleDialogVisible = true;
+      let { data } = await this.$api.getRoles();
+      if (data.meta.status === 200) {
+        this.roleInfo = data.data;
+      }
+    },
+    // 分配角色
+    async putUserRole(id) {
+      if (this.selectRoleId) {
+        let { data } = await this.$api.putUserRole({
+          id,
+          rid: this.selectRoleId,
+        });
+        if (data.meta.status === 200) {
+          this.selectRoleId = "";
+          this.roleDialogVisible = false;
+          this.getUserList(this.queryInfo);
+          this.$message.success(data.meta.msg);
+        } else {
+          this.$message.error(data.meta.msg);
+        }
+      } else {
+        this.$message.error("请选择角色!!!");
       }
     },
     // 删除用户按钮的回调  发弹框
