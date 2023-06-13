@@ -69,7 +69,7 @@
               type="danger"
               icon="el-icon-delete"
               size="mini"
-              @click="delUserInfo(row.id)"
+              @click="delUserInfo(row.id, queryInfo.pagenum)"
             ></el-button>
             <!-- 分配权限按钮 -->
             <el-button
@@ -231,6 +231,8 @@ export default {
       // 角色的列表信息
       roleInfo: [],
       selectRoleId: "",
+      // 当前的页数
+      page: 1,
     };
   },
   created() {
@@ -336,7 +338,7 @@ export default {
       }
     },
     // 删除用户按钮的回调  发弹框
-    delUserInfo(id) {
+    delUserInfo(id, page) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -347,6 +349,11 @@ export default {
           //接收一个id
           let { data } = await this.$api.delUserInfo(id);
           if (data.meta.status === 200) {
+            if (this.total % this.queryInfo.pagesize == 1) {
+              page = page - 1 ? page - 1 : page;
+              // page=page - 1;
+            }
+            this.queryInfo.pagenum = page;
             this.getUserList(this.queryInfo);
             this.$message({
               type: "success",
@@ -355,7 +362,7 @@ export default {
           } else {
             this.$message({
               type: "error",
-              message: "删除成功!",
+              message: data.meta.msg,
             });
           }
         })

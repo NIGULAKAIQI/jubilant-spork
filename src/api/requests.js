@@ -1,14 +1,15 @@
 import axios from "axios";
 
-const  requests  = axios.create({
-    baseURL: "http://127.0.0.1:8888/api/private/v1",
-    timeout:5000
+const requests = axios.create({
+    // baseURL: "http://127.0.0.1:8888/api/private/v1",
+    baseURL: 'http://43.143.0.76:8889/api/private/v1',
+    timeout: 5000
 })
 // 添加请求拦截器
 requests.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     // console.log(config);
-    config.headers.Authorization=sessionStorage.getItem('token')
+    config.headers.Authorization = sessionStorage.getItem('token')
     return config;
 }, function (error) {
     // 对请求错误做些什么

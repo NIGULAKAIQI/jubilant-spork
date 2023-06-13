@@ -16,3 +16,6 @@ body,
 p{
     padding: 5px;
 }
+.el-table {
+    margin: 15px 0;
+}

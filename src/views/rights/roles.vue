@@ -96,7 +96,7 @@
         </el-table-column>
       </el-table>
 
-      <!-- 添加角色 -->
+      <!-- 添加角色弹框 -->
       <el-dialog
         title="添加角色"
         :visible.sync="dialogVisible"
@@ -315,9 +315,9 @@ export default {
         this.rightsDialogVisible = false;
         this.roleId = "";
         this.getRoles();
-        this.$message.success( data.meta.msg);
+        this.$message.success(data.meta.msg);
       } else {
-        this.$message.error( data.meta.msg);
+        this.$message.error(data.meta.msg);
       }
     },
     // 递归获取三级权限的id
@@ -384,9 +384,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.el-table {
-  margin: 15px 0;
-}
+
 .el-tag {
   margin: 7px;
 }

@@ -41,7 +41,7 @@ export default {
   methods: {
     // 获取权限列表
     async getRightsList() {
-      let { data } = await this.$api.getRights('list');
+      let { data } = await this.$api.getRights("list");
       if (data.meta.status === 200) {
         // 获取列表成功
         this.rightList = data.data;
