@@ -31,7 +31,15 @@ const api = {
     addGoodsCategorie: (params) => requests.post('/categories', params), //添加商品分类
     delGoodsCategorie: (id) => requests.delete('/categories/' + id), //删除商品分类
     getGoodsCategoriesById: (id) => requests.get('/categories/' + id), //根据id查询商品分类
-    putCate: ({ id, cat_name }) => requests.put('/categories/' + id, {cat_name})
+    putCate: ({ id, cat_name }) => requests.put('/categories/' + id, { cat_name }), //修改商品分类
+
+    // 分类参数管理
+    getParams: ({ id, sel }) => requests.get(`/categories/${id}/attributes?sel=${sel}`), //获取商品分类参数
+    addParams: (id, params) => requests.post(`/categories/${id}/attributes`, params), //添加商品分类参数
+    getParamsById: ({ cat_id, attr_id, attr_sel, attr_vals }) => requests.get(`/categories/${cat_id}/attributes/${attr_id}`, { attr_sel, attr_vals }),//根据id查询寻商品分类参数
+    putparamsById: (cat_id, { attr_id, attr_sel, attr_name, attr_vals }) => requests.put(`/categories/${cat_id}/attributes/${attr_id}`, { attr_name, attr_sel, attr_vals }),//编辑商品分类参数
+    delParamsById: ({ cat_id, attr_id }) => requests.delete(`/categories/${cat_id}/attributes/${attr_id}`),//删除商品分类参数
+    eitdParamsById: ({ cat_id, attr_id, attr_vals, attr_sel, attr_name }) => requests.put(`/categories/${cat_id}/attributes/${attr_id}`, { attr_sel, attr_vals, attr_name }) // 编辑提交参数
 
 }
 export default api
