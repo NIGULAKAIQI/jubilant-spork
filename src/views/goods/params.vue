@@ -32,7 +32,11 @@
       </el-row>
 
       <!-- 标签页 -->
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs
+        v-model="activeName"
+        @tab-click="handleClick"
+        :before-leave="beforeLeave"
+      >
         <el-tab-pane label="用户管理" name="many">
           <!-- 按钮 -->
           <el-button
@@ -352,8 +356,8 @@ export default {
     handleChange(value) {
       // console.log(value);
       if (value.length !== 3) {
-          this.tableData=[]
-        return this.selectedKeys = [];
+        this.tableData = [];
+        return (this.selectedKeys = []);
       } else {
         // 拿数据发请求
         // console.log(212313);
@@ -434,6 +438,10 @@ export default {
       } else {
         this.$message.error(data.meta.msg);
       }
+    },
+    beforeLeave(a, b) {
+      console.log(a,b);
+      
     },
   },
 };

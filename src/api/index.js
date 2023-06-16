@@ -39,7 +39,14 @@ const api = {
     getParamsById: ({ cat_id, attr_id, attr_sel, attr_vals }) => requests.get(`/categories/${cat_id}/attributes/${attr_id}`, { attr_sel, attr_vals }),//根据id查询寻商品分类参数
     putparamsById: (cat_id, { attr_id, attr_sel, attr_name, attr_vals }) => requests.put(`/categories/${cat_id}/attributes/${attr_id}`, { attr_name, attr_sel, attr_vals }),//编辑商品分类参数
     delParamsById: ({ cat_id, attr_id }) => requests.delete(`/categories/${cat_id}/attributes/${attr_id}`),//删除商品分类参数
-    eitdParamsById: ({ cat_id, attr_id, attr_vals, attr_sel, attr_name }) => requests.put(`/categories/${cat_id}/attributes/${attr_id}`, { attr_sel, attr_vals, attr_name }) // 编辑提交参数
+    eitdParamsById: ({ cat_id, attr_id, attr_vals, attr_sel, attr_name }) => requests.put(`/categories/${cat_id}/attributes/${attr_id}`, { attr_sel, attr_vals, attr_name }), // 编辑提交参数
+
+    // 商品列表
+    getGoods: (params) => requests.get('/goods', { params }), //获取商品列表
+    getGoodsById: (id) => requests.get(`/goods/${id}`),  //根据id查商品
+    delGoodsInfo: (id) => requests.delete('/goods/' + id),  //删除商品
+    addGoods: (params) => requests.post("/goods", params), //添加商品
+
 
 }
 export default api
