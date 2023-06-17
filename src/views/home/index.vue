@@ -81,7 +81,7 @@ export default {
     //  获取菜单导航数据的方法
     async getMenus() {
       let { data } = await this.$api.getMenus();
-      // console.log(data);
+      // (data);
       if (data.meta.status === 200) {
         // 获取数据成功
         this.menus = data.data;
@@ -114,7 +114,6 @@ export default {
 .el-aside {
   background-color: #313743;
   .el-menu {
-  
     .toggle-button {
       color: #fff;
       text-align: center;

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <el-tabs
-   
-      @tab-click="handleClick"
-      :before-leave="beforeLeave"
-    >
+    <el-tabs @tab-click="handleClick" :before-leave="beforeLeave">
       <el-tab-pane label="用户管理" name="many">
         <!-- 按钮 -->
         <el-button
@@ -133,19 +129,19 @@
 <script>
 export default {
   created() {
-    console.log(32112);
+    32112;
   },
   beforeMount() {
-    console.log(111);
-    },
+    111;
+  },
   data() {
     return {
-        activeName:1
-    }
+      activeName: 1,
+    };
   },
   methods: {
     beforeLeave(A, B) {
-      console.log(A, B);
+      A, B;
     },
   },
 };

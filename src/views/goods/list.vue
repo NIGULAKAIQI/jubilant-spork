@@ -28,9 +28,7 @@
         ></el-col>
         <!-- 添加用户按钮 -->
         <el-col :span="4">
-          <el-button type="primary" @click="toAddGoods"
-            >添加用户</el-button
-          >
+          <el-button type="primary" @click="toAddGoods">添加用户</el-button>
         </el-col>
       </el-row>
       <!-- 表格区 -->
@@ -75,7 +73,7 @@
       >
       </el-pagination>
       <!-- 弹框区 -->
-    
+
       <!--弹框修改用户的弹框 -->
       <el-dialog
         title="修改用户"
@@ -196,15 +194,15 @@ export default {
     // 获取用户列表的api
     async getGoods(params) {
       let { data } = await this.$api.getGoods(params);
-      // console.log(data);
+      // (data);
       if (data.meta.status === 200) {
         //获取用户列表成功
         // 赋值给渲染的数据
-        console.log(data);
+        data;
 
         this.goodsList = data.data.goods;
         this.total = data.data.total;
-        // console.log(this.userList);
+        // (this.userList);
       }
     },
     // 查找商品的api
@@ -233,7 +231,7 @@ export default {
     // 编辑用户按钮的回调  发送请求 根据id查用户
     async putUser(id) {
       this.editDialogVisible = true;
-      // console.log(id);
+      // (id);
       // this.editFrom = id
       let { data } = await this.$api.getUserById(id);
       if (data.meta.status === 200) {
@@ -279,15 +277,15 @@ export default {
       } else {
         this.$message.error("请选择角色!!!");
       }
-      },
+    },
     // 跳转去添加用户界面
-      toAddGoods() {
-        this.$router.push('/addgoods')
+    toAddGoods() {
+      this.$router.push("/addgoods");
     },
     // 删除用户按钮的回调  发弹框
-      delGoodsInfo(id, page) {
-        // console.log(id);
-        
+    delGoodsInfo(id, page) {
+      // (id);
+
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -321,26 +319,26 @@ export default {
             message: "已取消删除",
           });
         });
-      },
-        // 显示条数改变的api
+    },
+    // 显示条数改变的api
     handleSizeChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagesize = val;
       this.getGoods(this.queryInfo);
     },
     // 页码改变的api
     handleCurrentChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagenum = val;
       this.getGoods(this.queryInfo);
     },
     // before-close 仅当用户通过点击关闭图标或遮罩关闭 Dialog 时起效
     handleClose(done) {
       this.$confirm("确认关闭？")
-        .then((_) => {
+        .then(() => {
           done();
         })
-        .catch((_) => {});
+        .catch(() => {});
     },
     // Dialog 关闭的回调
     close() {

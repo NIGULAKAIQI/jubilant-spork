@@ -85,8 +85,8 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :page-sizes="[1, 2, 5, 10]"
-        :page-size="2"
+        :page-sizes="[2, 4, 8]"
+        :page-size="4"
         :current-page="queryInfo.pagenum"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -201,7 +201,7 @@ export default {
       queryInfo: {
         query: "",
         pagenum: 1, //显示的页数
-        pagesize: 2, //显示的条数
+        pagesize: 4, //显示的条数
       },
       // 渲染表格的数据
       userList: [],
@@ -243,13 +243,13 @@ export default {
     // 获取用户列表的api
     async getUserList(params) {
       let { data } = await this.$api.getUsers(params);
-      // console.log(data);
+      // (data);
       if (data.meta.status === 200) {
         //获取用户列表成功
         // 赋值给渲染的数据
         this.userList = data.data.users;
         this.total = data.data.total;
-        // console.log(this.userList);
+        // (this.userList);
       }
     },
     // 查找用户的api
@@ -290,7 +290,7 @@ export default {
     // 编辑用户按钮的回调  发送请求 根据id查用户
     async putUser(id) {
       this.editDialogVisible = true;
-      // console.log(id);
+      // (id);
       // this.editFrom = id
       let { data } = await this.$api.getUserById(id);
       if (data.meta.status === 200) {
@@ -375,23 +375,23 @@ export default {
     },
     // 显示条数改变的api
     handleSizeChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagesize = val;
       this.getUserList(this.queryInfo);
     },
     // 页码改变的api
     handleCurrentChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagenum = val;
       this.getUserList(this.queryInfo);
     },
     // before-close 仅当用户通过点击关闭图标或遮罩关闭 Dialog 时起效
     handleClose(done) {
       this.$confirm("确认关闭？")
-        .then((_) => {
+        .then(() => {
           done();
         })
-        .catch((_) => {});
+        .catch(() => {});
     },
     // Dialog 关闭的回调
     close() {

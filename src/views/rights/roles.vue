@@ -289,7 +289,7 @@ export default {
       this.roleId = row.id;
       // 开始递归出三级权限
       this.getListId(row, this.defKeys);
-      // console.log(row);
+      // (row);
       this.rightsDialogVisible = true;
       let { data } = await this.$api.getRights("tree");
       if (data.meta.status === 200) {
@@ -338,7 +338,7 @@ export default {
     },
     // 点击树节点复选框的回调
     handleCheckChange(data, checked, indeterminate) {
-      console.log(data, checked, indeterminate);
+      data, checked, indeterminate;
     },
     // 点击权限删除按钮的回调
     closeTag(rightId, row) {
@@ -371,10 +371,10 @@ export default {
     // before-close 仅当用户通过点击关闭图标或遮罩关闭 Dialog 时起效
     handleClose(done) {
       this.$confirm("确认关闭？")
-        .then((_) => {
+        .then(() => {
           done();
         })
-        .catch((_) => {});
+        .catch(() => {});
     },
     // Dialog 关闭的回调
     close() {
@@ -384,7 +384,6 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-
 .el-tag {
   margin: 7px;
 }

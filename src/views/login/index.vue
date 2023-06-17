@@ -44,15 +44,15 @@ export default {
       if (data.meta.status === 200) {
         // 登录成功执行
         // 提示登录成功的信息
-        this.$message.success('登录成功')
+        this.$message.success("登录成功");
         // 把Token存入会话中
-        sessionStorage.setItem("token", data.data.token)
+        sessionStorage.setItem("token", data.data.token);
         //  进行首页的跳转
-        this.$router.push('/home')
-        //  console.log(data.data.token);
+        this.$router.push("/home");
+        //  (data.data.token);
       } else {
         // 登录失败执行
-        this.$message.error('登录失败:'+data.meta.msg)
+        this.$message.error("登录失败:" + data.meta.msg);
       }
     },
   },

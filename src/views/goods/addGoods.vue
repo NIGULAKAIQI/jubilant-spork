@@ -59,9 +59,7 @@
                 @change="handleChange"
               ></el-cascader>
             </el-form-item>
-              <el-button type="info" @click="backGoods"
-              >返回</el-button
-            >
+            <el-button type="info" @click="backGoods">返回</el-button>
           </el-tab-pane>
           <el-tab-pane label="商品参数" name="1">
             <el-form-item
@@ -117,7 +115,6 @@
             <el-button type="primary" @click="addGoods(addForm)"
               >添加商品</el-button
             >
-          
           </el-tab-pane>
         </el-tabs>
       </el-form>
@@ -179,7 +176,7 @@ export default {
     async getGoodsCategories() {
       let { data } = await this.$api.getGoodsCategories();
       if (data.meta.status === 200) {
-        // console.log(data)
+        // (data)
         this.cateList = data.data;
       }
     },
@@ -194,31 +191,31 @@ export default {
             item.attr_vals = item.attr_vals ? item.attr_vals.split(",") : [];
           });
           this.manyData = data.data;
-          // console.log( this.manyData);
+          // ( this.manyData);
         }
       }
     },
     // 添加商品
     async addGoods(params) {
       this.manyData.forEach((item) => {
-        // console.log(item);
+        // (item);
         const atterInfo = {
           attr_id: item.attr_id,
           attr_value: item.attr_vals.join(","),
         };
-        // console.log("对象", atterInfo);
+        // ("对象", atterInfo);
         params.attrs.push(atterInfo);
       });
       this.onlyData.forEach((item) => {
-        // console.log(item);
+        // (item);
         const atterInfo = {
           attr_id: item.attr_id,
           attr_value: item.attr_vals,
         };
-        // console.log("对象", atterInfo);
+        // ("对象", atterInfo);
         params.attrs.push(atterInfo);
       });
-      console.log("发送的对象", params.attrs);
+      "发送的对象", params.attrs;
 
       params.goods_cat =
         typeof params.goods_cat !== "string"
@@ -275,15 +272,15 @@ export default {
         return (this.addForm.goods_cat = []);
       } else {
         // 选择了商品分类可以放行
-        console.log(this.addForm.goods_cat);
-        console.log(value);
-        console.log(this.cateId);
+        this.addForm.goods_cat;
+        value;
+        this.cateId;
       }
     },
     // 点击文件列表中已上传的文件时的钩子
     handlePreview({ response }) {
-      // console.log("点击文件列表中已上传的文件时的钩子");
-      // console.log(response.data.url);
+      // ("点击文件列表中已上传的文件时的钩子");
+      // (response.data.url);
       this.dialogVisible = true;
       this.dialogImageUrl = response.data.url;
     },
@@ -292,23 +289,23 @@ export default {
       // response
       // 筛选出名字不等于file.response.data.tmp_path
       this.addForm.pics = this.addForm.pics.filter((item) => {
-        // console.log('item',item);
+        // ('item',item);
         return item.pic !== file.response.data.tmp_path;
       });
-      console.log(this.addForm.pics);
+      this.addForm.pics;
     },
     // 文件上传成功时的钩子
     handleSuccess({ data }) {
-      // console.log(data);
+      // (data);
       // 文件的临时路径
-      // console.log(data.tmp_path);
+      // (data.tmp_path);
       this.addForm.pics.push({ pic: `${data.tmp_path}` });
-      console.log(this.addForm.pics);
+      this.addForm.pics;
     },
     // 返回商品列表
     backGoods() {
-      this.$router.push('/goods')
-    }
+      this.$router.push("/goods");
+    },
   },
   computed: {
     cateId() {

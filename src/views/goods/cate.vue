@@ -188,7 +188,7 @@ export default {
     async getGoodsCategories(queryInfo) {
       let { data } = await this.$api.getGoodsCategories(queryInfo);
       if (data.meta.status === 200) {
-        console.log(data);
+        data;
         this.tableData = data.data.result;
         this.total = data.data.total;
       }
@@ -198,14 +198,14 @@ export default {
       this.dialogVisible = true;
       let { data } = await this.$api.getGoodsCategories({ type: 2 });
       if (data.meta.status === 200) {
-        console.log(data);
+        data;
         this.options = data.data;
       }
     },
     // 添加分类
     async addCate(addGoodsCategorie) {
       // 传给接口的参数      addGoodsCategorie
-      console.log(addGoodsCategorie);
+      addGoodsCategorie;
       let { data } = await this.$api.addGoodsCategorie(addGoodsCategorie);
       if (data.meta.status === 201) {
         this.$message.success("添加分类成功!!");
@@ -216,7 +216,7 @@ export default {
     },
     // 删除分类
     delCate(row, page) {
-      console.log(row);
+      row;
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -251,17 +251,17 @@ export default {
     },
     // 编辑  根据id查分类
     async getGoodsCategoriesById(id) {
-      console.log(id);
+      id;
       this.editDialogVisible = true;
       let { data } = await this.$api.getGoodsCategoriesById(id);
       if (data.meta.status === 200) {
-        console.log(data);
+        data;
         this.editGoodsCategory = data.data;
       }
     },
     // 修改商品分类
     async putCate(row) {
-      console.log(row);
+      row;
       row.cat_id;
       row.cat_name;
       let { data } = await this.$api.putCate({
@@ -278,29 +278,29 @@ export default {
     },
     // 显示条数改变的api
     handleSizeChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagesize = val;
       this.getGoodsCategories(this.queryInfo);
     },
     // 页码改变的api
     handleCurrentChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagenum = val;
       this.getGoodsCategories(this.queryInfo);
     },
     // selectedKeys值发生变化的回调  获取发送的父类id和 分类层级的方法
     handleChange(value) {
-      // console.log(value);
-      console.log(this.selectedKeys);
+      // (value);
+      this.selectedKeys;
       if (value.length === 0) {
-        // console.log("0000000");
+        // ("0000000");
         this.addGoodsCategorie.cat_pid = 0;
         this.addGoodsCategorie.cat_level = 0;
       } else {
-        // console.log(value.length - 1);
+        // (value.length - 1);
         // 父类id
         this.addGoodsCategorie.cat_pid = value[value.length - 1];
-        // console.log(value[value.length - 1]);
+        // (value[value.length - 1]);
         // 分类的层级
         this.addGoodsCategorie.cat_level = value.length;
       }

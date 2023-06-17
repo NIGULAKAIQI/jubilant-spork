@@ -11,6 +11,7 @@ import Params from '@/views/goods/params'
 import List from '@/views/goods/list'
 import AddGoods from '@/views/goods/addGoods'
 import Orders from '@/views/order'
+import Report from "@/views/report"
 
 
 
@@ -77,6 +78,11 @@ const routes = [
         path: '/orders',
         name: 'orders',
         component: Orders
+      },
+      {
+        path: '/reports',
+        name: 'report',
+        component: Report
       }
     ]
   }
@@ -88,7 +94,7 @@ const router = new VueRouter({
 
 // 前置路由守卫
 router.beforeEach((to, from, next) => {
-  // console.log(to, from);
+  // (to, from);
   // 跳转的名字不是login执行
   if (to.name !== "login") {
     const token = sessionStorage.getItem("token")

@@ -250,7 +250,7 @@ export default {
     },
     // 分类的id
     cateID() {
-      // console.log(this.selectedKeys[this.selectedKeys.length-1]);
+      // (this.selectedKeys[this.selectedKeys.length-1]);
       return this.selectedKeys[2];
     },
     // 标题文本
@@ -263,14 +263,14 @@ export default {
     async getGoodsCategories() {
       let { data } = await this.$api.getGoodsCategories();
       if (data.meta.status === 200) {
-        // console.log(data)
+        // (data)
         this.cateList = data.data;
       }
     },
     //获取分类参数
     async getParams(id, sel) {
       let { data } = await this.$api.getParams({ id, sel });
-      // console.log(data);
+      // (data);
       if (data.meta.status === 200) {
         this.tableData = data.data;
 
@@ -282,15 +282,15 @@ export default {
           // 每个vals的表单显示或隐藏
           // item.inputVisible = false;
           this.$set(item, "inputVisible", false);
-          // console.log(item.attr_vals);
+          // (item.attr_vals);
         });
-        // console.log(data.data);
+        // (data.data);
       }
     },
     // 添加动态参数或者静态属性
     async addParams(id, params) {
       let { data } = await this.$api.addParams(id, params);
-      // console.log(data);
+      // (data);
       if (data.meta.status === 201) {
         this.$message.success(data.meta.msg);
         this.dialogVisible = false;
@@ -301,12 +301,12 @@ export default {
     },
     // 通过id查询params
     async getParamsById(row) {
-      // console.log(row);
+      // (row);
       this.editDialogVisible = true;
       // this.editAttributes.attr_name = row.attr_name;
 
       let { data } = await this.$api.getParamsById(row);
-      //  console.log(data);
+      //  (data);
       this.editAttributes.attr_id = row.attr_id;
       if (data.meta.status === 200) {
         // this.editAttributes = row;
@@ -317,13 +317,13 @@ export default {
     },
     // 修改商品分类参数
     async editParams() {
-      // console.log(this.editAttributes);
+      // (this.editAttributes);
 
       let { data } = await this.$api.putparamsById(
         this.cateID,
         this.editAttributes
       );
-      // console.log(data);
+      // (data);
       if (data.meta.status === 200) {
         this.editDialogVisible = false;
         this.getParams(this.cateID, this.editAttributes.attr_sel);
@@ -354,22 +354,21 @@ export default {
     },
     // selectedKeys值发生变化的回调  获取发送的父类id和 分类层级的方法
     handleChange(value) {
-      // console.log(value);
+      // (value);
       if (value.length !== 3) {
         this.tableData = [];
         return (this.selectedKeys = []);
       } else {
         // 拿数据发请求
-        // console.log(212313);
+        // (212313);
         this.getParams(this.cateID, this.activeName);
       }
 
-      // console.log(this.addAttributes.id);
-      // console.log(this.selectedKeys);
+      // (this.addAttributes.id);
+      // (this.selectedKeys);
     },
     // 点击tab的回调
-    handleClick(tab, event) {
-      //   console.log(tab, event);
+    handleClick() {
       this.addAttributes.attr_sel = this.activeName;
       this.editAttributes.attr_sel = this.activeName;
       if (this.selectedKeys.length !== 3) return;
@@ -382,19 +381,19 @@ export default {
     },
     // 显示输入框
     showInput(row) {
-      // console.log(row);
+      // (row);
       row.inputVisible = true;
       // this.tableData.splice(index, 1, row);
       //  Vue.set(vm.json, "sex", "女")
       //  this.$set(row,'inputVisible',true)
-      this.$nextTick((_) => {
-        // console.log(this.$refs);
+      this.$nextTick(() => {
+        // (this.$refs);
         this.$refs.saveTagInput.$refs.input.focus();
       });
     },
     // 失去焦点和键盘enter弹起的回调
     async handleInputConfirm(row) {
-      console.log(2121212);
+      2121212;
       if (row.inputValue.trim().length == 0) {
         row.inputVisible = false;
         row.inputValue = "";
@@ -403,8 +402,8 @@ export default {
       row.attr_vals.push(row.inputValue.trim());
       row.inputVisible = false;
       row.inputValue = "";
-      console.log(row);
-      console.log(row.attr_vals);
+      row;
+      row.attr_vals;
 
       let { data } = await this.$api.eitdParamsById({
         cat_id: row.cat_id,
@@ -413,7 +412,7 @@ export default {
         attr_sel: row.attr_sel,
         attr_name: row.attr_name,
       });
-      console.log(data);
+      data;
       if (data.meta.status === 200) {
         this.$message.success(data.meta.msg);
       } else {
@@ -422,9 +421,9 @@ export default {
     },
     // 小标签删除事件
     async tagDle(row, index) {
-      console.log(row, index);
+      row, index;
       row.attr_vals.splice(index, 1);
-      // console.log(  row.attr_vals);
+      // (  row.attr_vals);
       let { data } = await this.$api.eitdParamsById({
         cat_id: row.cat_id,
         attr_id: row.attr_id,
@@ -432,7 +431,7 @@ export default {
         attr_sel: row.attr_sel,
         attr_name: row.attr_name,
       });
-      console.log(data);
+      data;
       if (data.meta.status === 200) {
         this.$message.success(data.meta.msg);
       } else {
@@ -440,8 +439,7 @@ export default {
       }
     },
     beforeLeave(a, b) {
-      console.log(a,b);
-      
+      a, b;
     },
   },
 };

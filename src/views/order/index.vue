@@ -23,7 +23,7 @@
             <el-button
               slot="append"
               icon="el-icon-search"
-          @click="searchOrder"
+              @click="searchOrder"
             ></el-button> </el-input
         ></el-col>
       </el-row>
@@ -50,7 +50,7 @@
               type="primary"
               icon="el-icon-edit"
               size="mini"
-              @click="editDialogVisible=true"
+              @click="editDialogVisible = true"
             ></el-button>
             <!-- 获取订单按钮 -->
             <el-button
@@ -102,18 +102,16 @@
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取 消</el-button>
           <!-- 弹框确认按钮 -->
-          <el-button type="primary" @click="editDialogVisible = false">确 定</el-button>
+          <el-button type="primary" @click="editDialogVisible = false"
+            >确 定</el-button
+          >
         </span>
       </el-dialog>
 
       <!-- 获取物流弹框 -->
-      <el-dialog
-        title="物流信息"
-        :visible.sync="roleDialogVisible"
-        width="50%"
-      >
+      <el-dialog title="物流信息" :visible.sync="roleDialogVisible" width="50%">
         <!--弹框分配角色的表单 -->
-        <el-timeline >
+        <el-timeline>
           <el-timeline-item
             v-for="(activity, index) in activities"
             :key="index"
@@ -132,8 +130,8 @@ import cityData from "@/citydata/citydata";
 export default {
   data() {
     return {
-      // 
-      activities:[],
+      //
+      activities: [],
       // 连携框的配置对象
       props: {
         expandTrigger: "hover",
@@ -193,25 +191,25 @@ export default {
       this.roleDialogVisible = true;
       let { data } = await this.$api.getKuaiDi();
       if (data.meta.status === 200) {
-        this.activities=data.data.data
+        this.activities = data.data.data;
       }
     },
     // 获取订单列表的api
     async getOrderList(params) {
       let { data } = await this.$api.getOrders(params);
-      // console.log(data);
+      // (data);
       if (data.meta.status === 200) {
         //获取用户列表成功ss
         // 赋值给渲染的数据
         this.orderList = data.data.goods;
         this.total = data.data.total;
-        // console.log(this.orderList);
+        // (this.orderList);
       }
     },
     // 搜索订单
     searchOrder() {
-      this.queryInfo.pagenum=1
-      this.getOrderList(this.queryInfo)
+      this.queryInfo.pagenum = 1;
+      this.getOrderList(this.queryInfo);
     },
     // 在点击由 clearable 属性生成的清空按钮时触发
     clear() {
@@ -220,23 +218,23 @@ export default {
     },
     // 显示条数改变的api
     handleSizeChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagesize = val;
       this.getOrderList(this.queryInfo);
     },
     // 页码改变的api
     handleCurrentChange(val) {
-      console.log(val);
+      val;
       this.queryInfo.pagenum = val;
       this.getOrderList(this.queryInfo);
     },
     // before-close 仅当用户通过点击关闭图标或遮罩关闭 Dialog 时起效
     handleClose(done) {
       this.$confirm("确认关闭？")
-        .then((_) => {
+        .then(() => {
           done();
         })
-        .catch((_) => {});
+        .catch(() => {});
     },
     // Dialog 关闭的回调
     close() {
