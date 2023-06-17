@@ -10,7 +10,7 @@ import Cate from "@/views/goods/cate"
 import Params from '@/views/goods/params'
 import List from '@/views/goods/list'
 import AddGoods from '@/views/goods/addGoods'
-import ro from '@/views/goods/ro'
+import Orders from '@/views/order'
 
 
 
@@ -74,9 +74,9 @@ const routes = [
         component: AddGoods
       },
       {
-        path: '/ro',
-        name: 'ro',
-        component: ro
+        path: '/orders',
+        name: 'orders',
+        component: Orders
       }
     ]
   }

@@ -1,4 +1,5 @@
 import requests from "./requests";
+import mock from './mock'
 
 const api = {
     // 登录
@@ -46,6 +47,13 @@ const api = {
     getGoodsById: (id) => requests.get(`/goods/${id}`),  //根据id查商品
     delGoodsInfo: (id) => requests.delete('/goods/' + id),  //删除商品
     addGoods: (params) => requests.post("/goods", params), //添加商品
+
+    // 订单列表
+    getOrders: (params) => requests.get('/orders', { params }), //获取用户数据
+    getUserById: (id) => requests.get(`/orders/${id}`),  //根据id查用户
+    delUserInfo: (id) => requests.delete('/orders/' + id),  //删除用户
+
+    getKuaiDi: () => mock.get('/kuaidi'),//获取快递信息
 
 
 }

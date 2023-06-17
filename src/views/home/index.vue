@@ -114,7 +114,7 @@ export default {
 .el-aside {
   background-color: #313743;
   .el-menu {
-    border: 0;
+  
     .toggle-button {
       color: #fff;
       text-align: center;

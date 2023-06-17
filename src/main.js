@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
 import api from '@/api'
+import _ from '@/mock/mockServer'
 Vue.config.productionTip = false
 Vue.prototype.$api=api
 
